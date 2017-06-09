@@ -13,4 +13,9 @@ public class StepsForServicesPage {
         return new StepsForWizzairDiscount();
     }
 
+    public StepsForServicesPage declineInsurance() {
+        servicesPage.declineInsurance();
+        return this;
+    }
+
 }

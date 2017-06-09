@@ -6,12 +6,8 @@ import com.epam.wizzair.page.InfoColumnPage;
 import com.epam.wizzair.page.Passenger;
 
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import static com.epam.wizzair.step.util.Util.fillNonMentionedWithDefaults;
-import static com.epam.wizzair.step.util.Util.parseAndFillPassenger;
-import static com.epam.wizzair.step.util.Util.parseAndFillPassengerName;
+import static com.epam.wizzair.step.util.Util.*;
 
 /**
  * Created by Dzmitry_Sankouski on 10-Mar-17.
@@ -25,7 +21,7 @@ public class PassengerSteps {
         passenger.setSportEquipment(data.getDepBaggage().isSportEquipment(), data.getRetBaggage().isSportEquipment());
         passenger.setCheckInMethod(data.getDepCheckinMethod(), data.getRetCheckinMethod());
         return this;
-    } // todo how to know if return flight enabled?
+    } // todo how do I know if return flight enabled?
 
     public PassengerSteps fillBaggage(Baggage baggage) {
         passenger.setCabinBaggage(baggage.getCabinBaggage());

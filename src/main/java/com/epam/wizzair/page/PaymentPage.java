@@ -58,6 +58,9 @@ public class PaymentPage extends AbstractPage {
     @FindBy (id = "payment-continue-btn")
     private WebElement confirmPaymentButton;
 
+    @FindBy (css="for=\"general-conditions-checkbox\"")
+    private WebElement generalConditionsCheckbox;
+
     public PaymentPage setFirstName(String firstName) {
         billingFirstName.click();
         billingFirstName.sendKeys(firstName);
@@ -135,7 +138,5 @@ public class PaymentPage extends AbstractPage {
         confirmPaymentButton.click();
         return this;
     }
-
-
 
 }

@@ -3,6 +3,7 @@ package com.epam.wizzair.page;
 import com.epam.wizzair.helper.DriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -65,7 +66,14 @@ public class TimetablePage extends AbstractPage {
 
     public TimetablePage fillOrigin(String origin){
         wait.until(ExpectedConditions.elementToBeClickable(inputOriginName));
-        inputOriginName.click();
+        try {
+            inputOriginName.click();
+        }
+        catch (StaleElementReferenceException e) {
+            wait.until(ExpectedConditions.elementToBeClickable(inputOriginName));
+            inputOriginName.click();
+        }
+
         inputOriginName.sendKeys(origin);
         WebElement originCity = getDriver().findElement(By.xpath(CITY + origin + "']"));
         wait.until(ExpectedConditions.visibilityOf(originCity));

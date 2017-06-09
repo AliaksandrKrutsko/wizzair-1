@@ -14,7 +14,7 @@ import static com.epam.wizzair.driver.DriverSingleton.getDriver;
 
 public class MainPage extends AbstractPage{
 
-    private WebDriverWait wait = new WebDriverWait(getDriver(), 5, 1000);
+    private WebDriverWait wait = new WebDriverWait(getDriver(), 10, 1000);
 
     private final String PATH_DATE = "//div[@class='calendar']//td[@data-day='";
     private final String PATH_CITY = "//strong[text()='";
@@ -34,10 +34,10 @@ public class MainPage extends AbstractPage{
     @FindBy(xpath = "//form[@name='flight-search']//button[text()='Search']")
     private WebElement searchButton;
 
-    @FindBy(xpath = "//ul[@class='navigation__container']/li[3]")
+    @FindBy(xpath = "//ul[@class='navigation__container']//button[text()[contains(.,'Sign in')]]")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//ul[@class='navigation__container']/li[1]")
+    @FindBy(xpath = "//ul[@class='navigation__container']//button[text()[contains(., 'Information & Services')]]")
     private WebElement servicesButton;
 
     //@FindBy(linkText = "Timetable")
@@ -65,6 +65,9 @@ public class MainPage extends AbstractPage{
     @FindBy(xpath = "//div[@class='flight-search__panel flight-search__panel--sub flight-search__panel--sub--people flight-search__panel--sub-transition']" +
             "/div[5]/button[@class='stepper__button stepper__button--add']") //TODO: refactor locators
     private WebElement addInfant;
+
+    @FindBy(css = "[class=\"booking-flow__itinerary__logo__image\"")
+    private WebElement returnToMainPage;
 
     public void openPage(){
         DriverSingleton.openNewWindowJS();
@@ -124,6 +127,7 @@ public class MainPage extends AbstractPage{
                     break;
                 case INFANT:
                     passengerField.click();
+                    passengerField.click();
                     addInfant.click();
                     break;
                 case NO:
@@ -141,6 +145,7 @@ public class MainPage extends AbstractPage{
     }
 
     public LoginPage signIn(){
+        wait.until(ExpectedConditions.visibilityOf(loginButton));
         loginButton.click();
         return new LoginPage();
     }
@@ -156,6 +161,7 @@ public class MainPage extends AbstractPage{
     }
 
     public MainPage servicesClick() {
+        wait.until(ExpectedConditions.visibilityOf(servicesButton));
         servicesButton.click();
         return this;
     }
@@ -177,6 +183,11 @@ public class MainPage extends AbstractPage{
         if(stickyBar.isDisplayed()){
             stickyBar.click();
         }
+        return this;
+    }
+
+    public MainPage returnToMainPage() {
+        returnToMainPage.click();
         return this;
     }
 

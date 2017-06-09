@@ -1,14 +1,17 @@
 package com.epam.wizzair.driver;
+
 import com.epam.wizzair.helper.DriverConfig;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
-//import com.epam.wizzair.helper.ProfilesIni;
+
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
+
+//import com.epam.wizzair.helper.ProfilesIni;
 
 public class DriverSingleton {
 
@@ -61,7 +64,7 @@ public class DriverSingleton {
             driver.manage().window().maximize();
 //            windowStack.push(driver.getWindowHandle());
             driver.manage().timeouts().implicitlyWait(DriverConfig.timeout(), TimeUnit.SECONDS);
-            driver.manage().timeouts().pageLoadTimeout(DriverConfig.timeout(), TimeUnit.SECONDS);
+            //driver.manage().timeouts().pageLoadTimeout(DriverConfig.timeout(), TimeUnit.SECONDS);
             driver.manage().timeouts().setScriptTimeout(DriverConfig.timeout(), TimeUnit.SECONDS);
         }
         return driver;

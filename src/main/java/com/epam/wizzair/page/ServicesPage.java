@@ -8,8 +8,17 @@ public class ServicesPage extends AbstractPage {
     @FindBy(id = "services-continue-btn")
     private WebElement nextPage;
 
+    @FindBy(xpath = "//strong[text()[contains(.,'NO INSURANCE')]]")
+    private WebElement noInsurance;
+
     public ServicesPage continueToNextPage() {
         nextPage.click();
         return this;
     }
+
+    public ServicesPage declineInsurance() {
+        noInsurance.click();
+        return this;
+    }
+
 }
